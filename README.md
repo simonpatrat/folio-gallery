@@ -1,3 +1,3 @@
 # FOLIO Gallery
 
-## Hello !
+## Portfolio gallery front template
