@@ -1,0 +1,259 @@
+@color-main-color: #660b22;
+
+html, body {
+  position: relative;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(../img/bg2.jpg) no-repeat center / cover;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.std-container {
+  padding-bottom: 200px;
+}
+
+// Bloc titre avec logo
+.std-title-container {
+
+}
+
+// Bloc Titre
+.std-heads-logo {
+  width: 120px;
+  height: 120px;
+  margin: 50px auto 0 auto;
+  background: url(../img/tetes.svg) no-repeat center / contain;
+}
+
+.std-title {
+  max-width: 700px;
+  min-height: 220px;
+  margin: 0 auto 30px auto;
+  position: relative;
+  top: -70px;
+  background: url(../img/std-title.svg) no-repeat center / contain;
+
+  @media (max-width: 720px) {
+    width: 90%;
+    min-height: 200px;
+  }
+}
+
+// Cadre
+.std-cadre {
+  position: relative;
+  max-width: 955px;
+  min-height: 845px;
+  margin: 30px auto 0 auto;
+  background: url(../img/cadre.png) no-repeat center / contain;
+
+  @media (max-width: 890px) {
+    background: url(../img/cadre_small-screens.png) no-repeat top center / contain;
+  }
+
+  @media (max-width: 700px) {
+    background: url(../img/cadre_small-screens_xs.png) no-repeat top center / contain;
+    position: relative;
+    top: -70px;
+    min-height: 730px;
+  }
+
+  @media (max-width: 460px) {
+    background: #fff url(../img/wood-pattern-1.png) repeat;
+    border: 20px solid #43372f;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5), 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    min-height: 1px;
+    border-radius: 3px;
+    width: 85%;
+  }
+}
+
+.std-cadre-inner {
+  max-width: 80%;
+  margin: auto;
+  padding: 120px 12%;
+  text-align: center;
+
+  @media (max-width: 780px) {
+    padding-top: 60px;
+  }
+
+  @media (max-width: 460px) {
+    padding: 60px 1%;
+  }
+
+}
+
+.std-cadre-main-text {
+  font-size: 24px;
+  line-height: 1.7;
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+  color: @color-main-color;
+
+  @media (max-width: 670px) {
+    font-size: 16px;
+  }
+}
+
+
+.std-main-phrase {
+  h3 {
+    text-align: center;
+    font-size: 30px;
+    color: @color-main-color;
+
+    @media (max-width: 670px) {
+      font-size: 20px;
+    }
+  }
+}
+
+// Form
+.std-form-container {
+
+}
+
+.std-form {
+  text-align: center;
+
+  .form-group {
+    text-align: left;
+    max-width: 280px;
+    margin: auto;
+
+    &:before, &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    + .form-group {
+      margin-top: 15px;
+    }
+
+    label {
+      display: block;
+      text-transform: uppercase;
+      color: @color-main-color;
+      float: right;
+      font-size: 14px;
+      text-align: left;
+      width: 90%;
+      position: relative;
+
+      @media (max-width: 670px) {
+        font-size: 12px;
+      }
+
+      &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        top: -2px;
+        left: -12.5%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid @color-main-color;
+        z-index: 2;
+      }
+    }
+
+    input {
+      display: block;
+      float: left;
+      width: 7%;
+      visibility: hidden;
+
+
+      &:checked ~ label:before {
+        content: "\25CF";
+        color: @color-main-color;
+        font-size: 31px;
+        text-align: center;
+        line-height: 14px;
+      }
+
+      &:checked ~ label .form-label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .form-btn-container {
+    margin-top: 30px;
+    text-align: center;
+
+    button {
+      border: none;
+      background: @color-main-color;
+      color: #fff;
+      outline: none;
+      text-transform: uppercase;
+      transition: all 300ms ease;
+      font-size: 18px;
+      padding: 15px 35px;
+      cursor: pointer;
+
+      &:hover {
+        background: lighten(@color-main-color, 10%);
+      }
+
+      &:focus {
+        background: lighten(@color-main-color, 15%);
+      }
+    }
+  }
+}
+
+// std Footer
+.std-footer {
+  text-align: center;
+  color: @color-main-color;
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+.std-more-info {
+  p {
+    font-size: 18px;
+
+    @media (max-width: 670px) {
+      font-size: 14px;
+    }
+  }
+}
+
+.std-about {
+  font-size: 14px;
+
+  @media (max-width: 670px) {
+    font-size: 12px;
+  }
+}
+
+.std-feuille-erable {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  z-index: 2;
+  width: 140px;
+  height: 144px;
+  margin-left: -70px;
+  background: url(../img/feuille-erable.png) no-repeat center / contain;
+
+  @media (max-width: 460px) {
+    bottom: -80px;
+  }
+}
+
+

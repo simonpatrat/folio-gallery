@@ -1,0 +1,19 @@
+{
+  "name": "Folio Gallery",
+  "version": "1.0.0",
+  "description": "Portfolio gallery front template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon Patrat",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-less": "^3.3.0",
+    "gulp-uglify": "^2.0.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "pump": "^1.0.1"
+  }
+}
