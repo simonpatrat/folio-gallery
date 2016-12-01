@@ -10,6 +10,7 @@ var $viewbox = $('<div class="viewbox">'
 var viewboxContent = {};
 var $items = $('.gallery-container .img-block');
 var $lastItemInRow;
+var prevLastItemRow = [];
 
 $items.each(function(i) {
     if( ( i + 1 ) % cols === 0) {
@@ -24,6 +25,20 @@ $('.gallery-container .img-block').on('click', function() {
     currentImage = $item.find('img').attr('src');
     viewboxContent.image = currentImage;
     viewboxContent.text = $item.data('text');
+    $currentEndOfRow = $item.nextAll('.end-of-row:first');
+
+    if (!$item.hasClass('end-of-row')) {
+        prevLastItemRow.push($currentEndOfRow.index() + 1);
+    }
+
+
+    if( prevLastItemRow.length > 2 ) {
+        prevLastItemRow.shift();
+    }
+
+    console.log(prevLastItemRow);
+
+
     $('.gallery-container .img-block').removeClass('selected');
     $item.addClass('selected');
 
@@ -37,21 +52,41 @@ $('.gallery-container .img-block').on('click', function() {
         +'</p>');
 
     if(!$item.hasClass('end-of-row')) {
-        $lastItemInRow = $item.nextAll('.end-of-row:first');
+        $lastItemInRow = $currentEndOfRow;
     } else {
         $lastItemInRow = $item;
     }
 
     if($('.viewbox').length === 0) {
-        $viewbox.insertAfter($lastItemInRow).slideDown(500, function() {
+        $viewbox.insertAfter($lastItemInRow).slideDown(500, function () {
             scrollToViewBox($item);
         });
 
-    } else {
-        $('.viewbox').slideUp( function() {
-            $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
-            scrollToViewBox($item);
-        });
+    }  else {
+
+        console.log('PRECEDENT : ');
+        console.log(prevLastItemRow[0]);
+        console.log('ACTUEL :');
+        console.log( $lastItemInRow.index() + 1);
+        console.log('END');
+
+        if (prevLastItemRow[0] != $lastItemInRow.index() + 1) {
+
+            $('.viewbox').slideUp(100, function() {
+                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
+                scrollToViewBox($item);
+            });
+
+        } else {
+
+
+            $('.viewbox').show( function() {
+                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
+                scrollToViewBox($item);
+            });
+        }
+
+
     }
 
 });
