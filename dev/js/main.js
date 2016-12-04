@@ -10,7 +10,8 @@ var $viewbox = $('<div class="viewbox">'
 var viewboxContent = {};
 var $items = $('.gallery-container .img-block');
 var $lastItemInRow;
-var prevLastItemRow = [];
+var tempPastLastItems = [];
+
 
 $items.each(function(i) {
     if( ( i + 1 ) % cols === 0) {
@@ -26,18 +27,16 @@ $('.gallery-container .img-block').on('click', function() {
     viewboxContent.image = currentImage;
     viewboxContent.text = $item.data('text');
     $currentEndOfRow = $item.nextAll('.end-of-row:first');
+    $('.end-of-row').removeClass('currentEndOfRow');
+    $currentEndOfRow.addClass('currentEndOfRow');
 
-    if (!$item.hasClass('end-of-row')) {
-        prevLastItemRow.push($currentEndOfRow.index() + 1);
+    tempPastLastItems.push($('.currentEndOfRow').index() + 1);
+
+    if(tempPastLastItems.length > 2) {
+        tempPastLastItems.shift();
     }
 
-
-    if( prevLastItemRow.length > 2 ) {
-        prevLastItemRow.shift();
-    }
-
-    console.log(prevLastItemRow);
-
+    console.log(tempPastLastItems);
 
     $('.gallery-container .img-block').removeClass('selected');
     $item.addClass('selected');
@@ -64,15 +63,19 @@ $('.gallery-container .img-block').on('click', function() {
 
     }  else {
 
-        console.log('PRECEDENT : ');
-        console.log(prevLastItemRow[0]);
-        console.log('ACTUEL :');
-        console.log( $lastItemInRow.index() + 1);
-        console.log('END');
 
-        if (prevLastItemRow[0] != $lastItemInRow.index() + 1) {
+        //console.log('itemIndex - cols : ');
+        //console.log(itemIndex - cols);
+        //console.log('currentEndOfRow index - cols : ');
+        //console.log($('.currentEndOfRow').index() - cols);
 
-            $('.viewbox').slideUp(100, function() {
+        if (
+            tempPastLastItems[0] === $('.currentEndOfRow').index() + 1
+        ) {
+
+            console.log('Ouiiii !!!');
+
+            $('.viewbox').show( function() {
                 $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
                 scrollToViewBox($item);
             });
@@ -80,7 +83,8 @@ $('.gallery-container .img-block').on('click', function() {
         } else {
 
 
-            $('.viewbox').show( function() {
+
+            $('.viewbox').slideUp( 200, function() {
                 $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
                 scrollToViewBox($item);
             });
