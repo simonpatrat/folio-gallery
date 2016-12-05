@@ -1,4 +1,4 @@
-console.log('Folio gallery')
+console.log('Folio gallery');
 
 var cols = 4;
 var currentImage = [];
