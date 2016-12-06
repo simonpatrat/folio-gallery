@@ -3,14 +3,22 @@ console.log('Folio gallery');
 var cols = 4;
 var currentImage = [];
 var $viewbox = $('<div class="viewbox">'
+        +'<div class="viewbox-inner">'
+
     +'<div class="viewbox-img-container col-6"></div>'
     +'<div class="viewbox-description-container col-6"></div>'
     +'<button class="close-viewer"></button>'
+    +'<div class="viewbox-navigation">'
+    +'<button class="vb-prev">Prev</button>'
+    +'<button class="vb-next">Next</button>'
+    +'</div>'
+    +'</div>'
     +'</div>');
 var viewboxContent = {};
 var $items = $('.gallery-container .img-block');
 var $lastItemInRow;
 var tempPastLastItems = [];
+
 
 
 $items.each(function(i) {
@@ -22,7 +30,7 @@ $items.each(function(i) {
 
 $('.gallery-container .img-block').on('click', function() {
     var $item = $(this);
-    var itemIndex = $item.index() + 1;
+    var itemIndex = $item.index('.img-block') + 1;
     currentImage = $item.find('img').attr('src');
     viewboxContent.image = currentImage;
     viewboxContent.text = $item.data('text');
@@ -30,7 +38,15 @@ $('.gallery-container .img-block').on('click', function() {
     $('.end-of-row').removeClass('currentEndOfRow');
     $currentEndOfRow.addClass('currentEndOfRow');
 
-    tempPastLastItems.push($('.currentEndOfRow').index() + 1);
+
+
+
+    if ($item.hasClass('end-of-row')) {
+        console.log('end');
+        tempPastLastItems[1] = tempPastLastItems[0];
+    } else {
+        tempPastLastItems.push($item.nextAll('.end-of-row:first').index('.end-of-row'));
+    }
 
     if(tempPastLastItems.length > 2) {
         tempPastLastItems.shift();
@@ -59,24 +75,17 @@ $('.gallery-container .img-block').on('click', function() {
     if($('.viewbox').length === 0) {
         $viewbox.insertAfter($lastItemInRow).slideDown(500, function () {
             scrollToViewBox($item);
+
         });
 
     }  else {
 
 
-        //console.log('itemIndex - cols : ');
-        //console.log(itemIndex - cols);
-        //console.log('currentEndOfRow index - cols : ');
-        //console.log($('.currentEndOfRow').index() - cols);
+        if (tempPastLastItems[0] === tempPastLastItems[1]) {
 
-        if (
-            tempPastLastItems[0] === $('.currentEndOfRow').index() + 1
-        ) {
-
-            console.log('Ouiiii !!!');
 
             $('.viewbox').show( function() {
-                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
+                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(300);
                 scrollToViewBox($item);
             });
 
@@ -85,13 +94,15 @@ $('.gallery-container .img-block').on('click', function() {
 
 
             $('.viewbox').slideUp( 200, function() {
-                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(500);
+                $('.viewbox').remove().insertAfter($lastItemInRow).slideDown(300);
                 scrollToViewBox($item);
             });
         }
 
 
     }
+
+
 
 });
 
@@ -106,7 +117,15 @@ $(document).on('click', '.close-viewer', function() {
 });
 
 function scrollToViewBox (el) {
-    $('html, body').animate({scrollTop: el.offset().top }, '500', 'swing', function() {
+    $('html, body').animate({scrollTop: el.offset().top }, '300', 'swing', function() {
 
     });
 }
+
+$(document).on('click', '.vb-next', function() {
+    $('.img-block.selected').nextAll('.img-block:first').trigger('click');
+});
+
+$(document).on('click', '.vb-prev', function() {
+    $('.img-block.selected').prevAll('.img-block:first').trigger('click');
+});

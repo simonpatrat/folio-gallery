@@ -32,6 +32,7 @@ body {
   font-size: 14px;
   margin: 1%;
   position: relative;
+  transition: all 300ms ease;
 
   &:after {
     content: '';
@@ -55,9 +56,15 @@ body {
     display: block;
     max-width: 100%;
     height: auto;
+    transition: all 300ms ease;
   }
 
   &.selected {
+
+    img {
+      opacity: 1;
+    }
+
     &:after {
       opacity: 1;
       transform: scale(1) translateY(0);
@@ -81,6 +88,11 @@ body {
   color: #fff;
   vertical-align: top;
   overflow-y: auto;
+
+  .viewbox-inner {
+    max-width: 90%;
+    margin: 0 auto;
+  }
 
   &:after {
     content: '';
@@ -108,6 +120,24 @@ body {
     display: block;
     max-width: 100%;
     height: auto;
+  }
+
+}
+
+.viewbox-navigation {
+
+  .vb-prev {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateX(-50%);
+  }
+
+  .vb-next {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -151,4 +181,8 @@ body {
     top: 15px;
     transform: rotate(45deg);
   }
+}
+
+.gallery-2 {
+
 }
