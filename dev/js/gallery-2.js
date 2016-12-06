@@ -65,7 +65,6 @@ $(document).ready(function() {
                     var firstOfLastRowBottom = $('.item').eq($this.index() - cols).position().top + $('.item').eq($this.index() - cols).outerHeight();
 
                     if (i < cols) {
-                        $(this).css('border-color', 'blue')
                         $this.css('top', 0);
                         $this.css('left', prevX + prevW + 'px');
                     }
