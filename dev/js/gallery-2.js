@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+
     var cols = 4;
     var heights = [];
     var heightMax;
