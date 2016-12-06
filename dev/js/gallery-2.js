@@ -3,6 +3,8 @@
 $(document).ready(function() {
 
     var cols = 4;
+    var heights = [];
+    var heightMax;
 
 
     makeGrid();
@@ -10,20 +12,21 @@ $(document).ready(function() {
     $(window).on('resize', function() {
 
       makeGrid();
+        //console.log(window.innerWidth);
 
     });
 
     function makeGrid () {
 
-        if ($(window).width() < 980) {
+        if (window.innerWidth < 980) {
             cols = 2;
         }
 
-        if ($(window).width() < 480) {
+        if (window.innerWidth < 480) {
             cols = 1;
         }
 
-        if ($(window).width() >= 980) {
+        if (window.innerWidth >= 980) {
             cols = 4;
         }
 
@@ -84,7 +87,12 @@ $(document).ready(function() {
                     }
 
 
+                }
 
+                if( heights.length >= $('.item').length ) {
+                    heights = [];
+                } else {
+                    heights.push($this.outerHeight() + $this.position().top);
                 }
 
 
@@ -92,6 +100,16 @@ $(document).ready(function() {
 
             });
 
+            //$('.grid').css('height');
+
+            heightMax = Math.max.apply(null, heights);
+
+/*
+            console.log(heights);
+            console.log(heightMax);
+*/
+
+            $('.grid').css('height', heightMax + 'px');
         });
     }
 
