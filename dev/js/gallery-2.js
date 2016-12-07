@@ -25,12 +25,13 @@ $(document).ready(function() {
 
         var toShow = $(this).data('filter');
 
-        $('.grid').find(toShow).removeClass('hidden-item').addClass('selected-item item');
+        $('.grid').find(toShow).removeClass('hidden-item').addClass('selected-item');
 
-        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item item');
+        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item');
 
         var $gridSave = $('.grid').clone();
 
+        //myGrid.makeGrid(4);
 
 
 /*        $('.hidden-item').on('transitionend', function() {
@@ -195,14 +196,14 @@ function SuperGrid() {
 
         }
 
-        else if (event.animationName == "itemRemoved") {
+/*        else if (event.animationName == "itemRemoved") {
             console.log('animation !');
             // This is the debug for knowing our listener worked!
             // event.target is the new node!
             //console.warn("Another item has been removed! ", event, event.target);
 
             //self.makeGrid(cols);
-        }
+        }*/
     };
 
    document.addEventListener("animationend", insertListener, false);
