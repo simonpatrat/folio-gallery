@@ -25,9 +25,9 @@ $(document).ready(function() {
 
         var toShow = $(this).data('filter');
 
-        $('.grid').find(toShow).removeClass('hidden-item').addClass('selected-item');
+        $('.grid').find(toShow).removeClass('hidden-item').addClass('selected-item item');
 
-        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item');
+        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item item');
 
         var $gridSave = $('.grid').clone();
 
@@ -99,6 +99,15 @@ function SuperGrid() {
                     $this.addClass('first');
                     $this.css('top', 0);
                     $this.css('left', 0);
+                }
+
+                if ($this.css('display') == 'none') {
+/*                    $this.width(0);
+                    $this.height(0);
+                    $this.innerWidth(0);
+                    $this.innerHeight(0);
+                    $this.outerWidth(0);
+                    $this.outerHeight(0);*/
                 }
 
                 if (i >= 1 ) {
@@ -180,19 +189,19 @@ function SuperGrid() {
         if (event.animationName == "nodeInserted") {
             // This is the debug for knowing our listener worked!
             // event.target is the new node!
-            //console.warn("Another node has been inserted! ", event, event.target);
+            console.warn("Another node has been inserted! ", event, event.target);
 
             self.makeGrid(cols);
 
         }
 
         else if (event.animationName == "itemRemoved") {
-            //console.log('animation !');
+            console.log('animation !');
             // This is the debug for knowing our listener worked!
             // event.target is the new node!
             //console.warn("Another item has been removed! ", event, event.target);
 
-            self.makeGrid(cols);
+            //self.makeGrid(cols);
         }
     };
 
