@@ -2,11 +2,15 @@
 
 $(document).ready(function() {
 
+    var $grid = $('.grid');
 
+    var $widthSetterEl = $('.item');
     var cols = 4;
     var heights = [];
     var heightMax;
+    var itemCssWidth = $('.item').css('width') || 100 / cols + '%';
 
+    $grid.find(' > *').css('width', itemCssWidth);
 
     makeGrid();
 
