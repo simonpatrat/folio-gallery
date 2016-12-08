@@ -87,6 +87,7 @@ function SuperGrid() {
 
             $('.item').css('position', 'absolute');
 
+            $('.item').css('width', 100 / cols + '%');
 
             $('.item').each(function(i) {
 
