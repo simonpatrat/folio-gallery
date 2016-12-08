@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         $('.grid').find(toShow).removeClass('hidden-item').addClass('selected-item');
 
-        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item');
+        $('.grid').find('.item').not(toShow).addClass('hidden-item').removeClass('selected-item first');
 
         var $gridSave = $('.grid').clone();
 
@@ -103,12 +103,12 @@ function SuperGrid() {
                 }
 
                 if ($this.css('display') == 'none') {
-/*                    $this.width(0);
+                    $this.width(0);
                     $this.height(0);
                     $this.innerWidth(0);
                     $this.innerHeight(0);
                     $this.outerWidth(0);
-                    $this.outerHeight(0);*/
+                    $this.outerHeight(0);
                 }
 
                 if (i >= 1 ) {
@@ -125,7 +125,7 @@ function SuperGrid() {
                     var prevW = $prev.outerWidth();
                     var prevH = $prev.outerHeight();
 
-                    var firstOfLastRowBottom = $('.item').eq($this.index() - cols).position().top + $('.item').eq($this.index() - cols).outerHeight();
+                    var firstOfLastRowBottom = $('.item').eq(i- cols).position().top + $('.item').eq(i - cols).outerHeight();
 
                     if (i < cols) {
                         $this.css('top', 0);
@@ -187,7 +187,7 @@ function SuperGrid() {
     this.init();
 
     var insertListener = function(event){
-        if (event.animationName == "nodeInserted") {
+        if (event.animationName == "nodeInserted" || event.animationName == "itemRemoved") {
             // This is the debug for knowing our listener worked!
             // event.target is the new node!
             console.warn("Another node has been inserted! ", event, event.target);
@@ -206,7 +206,7 @@ function SuperGrid() {
         }*/
     };
 
-   document.addEventListener("animationend", insertListener, false);
+   document.addEventListener("animationstart", insertListener, false);
 
 
 }
