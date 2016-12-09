@@ -78,7 +78,7 @@ function SuperGrid() {
         }
 
         if (window.innerWidth > 980) {
-            cols = 4;
+            cols = 6;
         }
 
 
@@ -87,12 +87,18 @@ function SuperGrid() {
 
             $('.item').css('position', 'absolute');
 
-            $('.item').css('width', 100 / cols + '%');
 
             $('.item').each(function(i) {
 
                 var $this = $(this);
 
+                if($this.hasClass('hidden-item')) {
+                    $this.css('width', 0);
+                    $this.css('height', 0);
+                } else {
+                    $this.css('width', 100 / cols + '%');
+                    $this.css('height', 'auto');
+                }
                 //$this.attr('data-left', $this.position().left);
                 //$this.attr('data-width', $this.outerWidth());
                 //$this.attr('data-somme', $this.position().left + $this.outerWidth());
