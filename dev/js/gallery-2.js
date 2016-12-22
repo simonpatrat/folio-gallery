@@ -157,7 +157,9 @@ function SuperGrid() {
                 }
 
                 if( heights.length >= $('.item').length ) {
+
                     heights = [];
+
                 } else {
                     heights.push($this.outerHeight() + $this.position().top);
                 }
